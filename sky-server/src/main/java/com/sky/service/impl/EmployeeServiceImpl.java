@@ -105,4 +105,20 @@ public class EmployeeServiceImpl implements EmployeeService {
 
         return new PageResult(total, records);
     }
+
+    /**
+     * 启用或者禁用一个员工
+     * @param id 员工id
+     * @param status 员工是否禁用的状态
+     */
+    @Override
+    public   void startOrStop(Integer status, Long id){
+        Employee employee = Employee.builder()
+                .status(status)
+                .id(id)
+                .build();
+
+//      因为在这里，update是动态的，不是null的字段他就更新，是null不更新，所以在这里建一个新的传过去是ok的
+        employeeMapper.update(employee);
+    }
 }

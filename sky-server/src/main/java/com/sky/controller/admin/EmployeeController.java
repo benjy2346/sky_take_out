@@ -93,4 +93,16 @@ public class EmployeeController {
 
         return Result.success    (employeeService.pageQuery(employeePageQueryDTO));
     }
+
+    /**
+     * 禁用或者启用一个员工
+     * 因为status是一个路径传参的参数，所以用@PathVariable, id在Query里面所以不用，但是要保证他俩是一样的名字
+     */
+    @PostMapping("/status/{status}")
+    @ApiOperation(value = "禁用或解禁员工")
+    public Result starOrStopEmployee(@PathVariable Integer status,Long id){
+        log.info("更新员工的状态为{}",status);
+        employeeService.startOrStop(status,id);
+        return Result.success();
+    }
 }

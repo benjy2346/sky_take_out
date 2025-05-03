@@ -34,4 +34,11 @@ public interface EmployeeMapper {
     void insert(Employee employee);
 
     Page<Employee> pageQuery(EmployeePageQueryDTO employeePageQueryDTO);
+
+    /**
+     * 动态地改变员工的字段，有在里面的就改变
+     * 放在xml mapper里
+     * @param employee
+     */
+    void update(Employee employee);
 }
