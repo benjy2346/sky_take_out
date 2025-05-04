@@ -121,4 +121,16 @@ public class EmployeeServiceImpl implements EmployeeService {
 //      因为在这里，update是动态的，不是null的字段他就更新，是null不更新，所以在这里建一个新的传过去是ok的
         employeeMapper.update(employee);
     }
+
+    /**
+     * 更新员工信息
+     * @param employeeDTO
+     */
+    public void updateEmployee(EmployeeDTO employeeDTO){
+        Employee employee = new Employee();
+        BeanUtils.copyProperties( employeeDTO,employee);
+        employee.setUpdateUser(BaseContext.getCurrentId());
+        employee.setUpdateTime(LocalDateTime.now());
+        employeeMapper.update(employee);
+    }
 }

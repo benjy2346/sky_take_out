@@ -105,4 +105,12 @@ public class EmployeeController {
         employeeService.startOrStop(status,id);
         return Result.success();
     }
+    /**
+     * 修改员工数据
+     */
+    @PutMapping
+    public Result updateEmployee(@RequestBody EmployeeDTO employeeDTO){
+        employeeService.updateEmployee(employeeDTO);
+        return Result.success();
+    }
 }
